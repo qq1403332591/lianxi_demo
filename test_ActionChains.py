@@ -18,8 +18,8 @@ class TestCase:
         el3 = self.driver.find_element(By.XPATH,"//*[@value='right click me']")
         actionchains = ActionChains(self.driver)
         actionchains.click(el2)
-        actionchains.context_click(el3)
-        actionchains.double_click(el1)
+        actionchains.context_click(el3)  # 双击
+        actionchains.double_click(el1)  # 右击
         time.sleep(3)
         actionchains.perform()
 

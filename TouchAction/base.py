@@ -34,8 +34,8 @@ class Test_case():
         '''
         pree(x=xxx,y=xxx) 传入起始滑动的x,y的坐标
         move_to(x=xxx,y=xxx) 要滑到到哪个地方的x,y坐标
-        release结束动作
-        perform执行操作
+        release()结束动作
+        perform()执行操作
         '''
 
     def teardown(self):

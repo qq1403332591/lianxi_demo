@@ -34,7 +34,7 @@ class Test_case():
         '''
         pree(x=xxx,y=xxx) 传入起始滑动的x,y的坐标
         move_to(x=xxx,y=xxx) 要滑到到哪个地方的x,y坐标
-        release()结束动作
+        release()抬起手指,结束动作
         perform()执行操作
         '''
 

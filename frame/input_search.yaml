@@ -1,0 +1,5 @@
+search_res:
+  - by: id
+    locator: "com.xueqiu.android:id/search_input_text"
+    content: "xiaomi"
+    action: send

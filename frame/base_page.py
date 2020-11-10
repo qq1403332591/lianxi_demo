@@ -1,3 +1,4 @@
+import yaml
 from appium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -44,3 +45,19 @@ class BasePage():
             # 如果传的元素是二个，既有 by ，又有 locator
             result = self.driver.find_element(by, locator)
         return result
+
+    def open_yaml(self,file,key_name):
+        # 读取yaml，取出关键数据，用parse解析
+        with open(file,encoding="utf-8") as f:
+            data = yaml.load(f)
+            self.parse(data[key_name])
+
+
+    def parse(self,func):
+        # 遍历每一个步骤
+        for ele in func:
+            # 如果操作是click就去点击
+            if "click" == ele["action"]:  # 当action是click的时候
+                self.find(ele["by"],ele["locator"]).click()   # 去查找他的元素并且点击
+            elif "send" == ele["action"]:
+                self.find(ele["by"],ele["locator"]).send_keys(ele["content"])

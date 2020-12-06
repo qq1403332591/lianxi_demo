@@ -1,6 +1,5 @@
+import json
 import requests
-import chevron
-from jsonpath import jsonpath
 from requests.auth import HTTPBasicAuth
 
 
@@ -42,11 +41,22 @@ class TestHttp:
                        }
         # cookie_data = {"Cooike":"hogwarts",
         #                "Uer-Agent":"school"}
-        r = requests.get(url=url,headers=headre_data)
+        r = requests.get(url=url, headers=headre_data)
         print(r.request.headers)
 
     def test_auth(self):
         # 认证体系
         r = requests.get('https://httpbin.testing-studio.com/basic-auth/banana/123',
-                         auth=HTTPBasicAuth("banana","123"))
+                         auth=HTTPBasicAuth("banana", "123"))
         print(r.text)
+
+    def test_demo(self):
+        with open("data.txt", encoding="utf-8") as f:
+            duser_dict = json.dumps(f.read())
+            user_dict = json.loads(duser_dict)
+            print(user_dict)
+
+    def test_demo01(self):
+        list_1 = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+        i_num = [i for i in list_1 if i > 4 if i > 80]
+        print(i_num)

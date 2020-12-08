@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 
@@ -18,8 +20,16 @@ class Tag:
         token = r.json()['access_token']
         return token
 
-    def add(self):
-        pass
+    def add(self,group_name,tag):
+        r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/add_corp_tag',
+                          params={'access_token': self.token},
+                          json=
+                          {
+                              "group_name":group_name ,
+                              "tag": tag}
+                          )
+        print(json.dumps(r.json(), indent=2))
+        return r
 
     def list(self):
         # 2.获取企业标Tag签库
@@ -30,8 +40,9 @@ class Tag:
                 "tag_id": []
             }
         )
+        print(json.dumps(r.json(), indent=2))  # 将python对象编码成Json字符串
         return r
-        # print(json.dumps(r.json(), indent=2))  # 将python对象编码成Json字符串
+
 
     def updata(self, id, name):
         # id = 'etXT2CDwAAabMht1wnGAhuh0PhwpoPDQ'
@@ -42,3 +53,17 @@ class Tag:
                               "id": id,
                               "name": name
                           })
+
+
+
+
+    def delect_biaoqian(self):
+        r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag',
+                      params=
+                      {"access_token": self.token},
+                      json={
+                          "tag_id": [
+                              "etXT2CDwAAFUmjGMA2W-eein60WloKbA"
+                          ]
+                      })
+        print(json.dumps(r.json(), indent=2))

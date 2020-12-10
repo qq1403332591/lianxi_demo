@@ -57,13 +57,11 @@ class Tag:
 
 
 
-    def delect_biaoqian(self):
+    def delect_tagid(self, tagid):
         r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag',
-                      params=
-                      {"access_token": self.token},
-                      json={
-                          "tag_id": [
-                              "etXT2CDwAAFUmjGMA2W-eein60WloKbA"
-                          ]
-                      })
+                          params=
+                          {"access_token": self.token},
+                          json={
+                              "tag_id": tagid
+                          })
         print(json.dumps(r.json(), indent=2))

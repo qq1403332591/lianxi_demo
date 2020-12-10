@@ -56,4 +56,5 @@ class Test_WeiXin():
     #   b，对添加的接口再删除
     #   c, 查询接口是否删除成功
     def test_delect(self):
-        self.tag.delect_biaoqian()
+        tagid = ["etXT2CDwAAFUmjGMA2W-eein60WloKbA"]
+        self.tag.delect_tagid(tagid)

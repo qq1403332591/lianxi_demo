@@ -47,6 +47,8 @@ class Test_WeiXin():
     def test_list(self):
         self.tag.list()
 
+
+
     # 40068 ："invalid tagid, 非法的tag_id，(tag_id不存在，重复删除的情况)
     # 几种接口情况：
     # 0.手动添加一个接口，再删除

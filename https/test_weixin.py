@@ -60,3 +60,15 @@ class Test_WeiXin():
     def test_delect(self):
         tagid = ["etXT2CDwAAFUmjGMA2W-eein60WloKbA"]
         self.tag.delect_tagid(tagid)
+
+
+    def test_beforadd(self):
+        group_data = "test"
+        tag_data = [{
+            "name": "tag_test12"
+        },
+            {
+                "name": "tag_test2"
+            }
+        ]
+        self.tag.bef_add(group_data,tag_data)

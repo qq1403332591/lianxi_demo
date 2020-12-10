@@ -55,13 +55,29 @@ class Tag:
                           })
 
 
-
-
-    def delect_tagid(self, tagid):
+    def delect_group_id(self, group_id):
         r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag',
                           params=
                           {"access_token": self.token},
                           json={
-                              "tag_id": tagid
+                              "group_id": group_id
                           })
         print(json.dumps(r.json(), indent=2))
+
+
+    def is_tag_group_name_exist(self,group_name):
+        for num  in self.list().json()['tag_group']:
+            if group_name in num['group_name']:
+                return num['group_id']
+        print('group_name not in num ')
+        raise ValueError('group_name  not in num ')
+
+    def bef_add(self,group_name,tag):
+        if self.add(group_name,tag).json()['errcode'] == 40071:
+            group_id = self.is_tag_group_name_exist(group_name)
+            if not group_id:
+                self.add(group_name,tag)
+            else:
+                self.delect_group_id(group_id)
+                self.add(group_name,tag)
+            return self.is_tag_group_name_exist(group_name)

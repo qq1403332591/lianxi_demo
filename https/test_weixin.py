@@ -59,16 +59,20 @@ class Test_WeiXin():
     #   c, 查询接口是否删除成功
     def test_delect(self):
         tagid = ["etXT2CDwAAFUmjGMA2W-eein60WloKbA"]
-        self.tag.delect_tagid(tagid)
+        self.tag.delect_group_id(tagid)
 
 
     def test_beforadd(self):
-        group_data = "test"
+        group_data = "tmp12345"
         tag_data = [{
-            "name": "tag_test12"
+            "name": "t1"
         },
             {
-                "name": "tag_test2"
+                "name": "t2"
             }
         ]
         self.tag.bef_add(group_data,tag_data)
+
+    def test_befor_delect(self):
+        r = self.tag.before_delect(['etXT2CDwAApKQWaY8U4JDvmUvxciZJkA'])
+        assert r.json()['errcode'] == 0

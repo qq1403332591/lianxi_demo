@@ -34,12 +34,12 @@ class Test_WeiXin():
     # 1.删除对应的tag
     # 2.已有的tag_name的基础上追加名字
     def test_add_biaoqian(self):
-        group_data = "test"
+        group_data = "test1225"
         tag_data = [{
-            "name": "tag_test1"
+            "name": "tag_1225_01"
         },
             {
-                "name": "tag_test2"
+                "name": "tag_1225_02"
             }
         ]
         self.tag.add(group_name=group_data,tag=tag_data)

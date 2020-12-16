@@ -45,7 +45,8 @@ class Test_WeiXin():
         self.tag.add(group_name=group_data,tag=tag_data)
 
     def test_list(self):
-        self.tag.list()
+        r = self.tag.list()
+
 
 
 
@@ -58,7 +59,7 @@ class Test_WeiXin():
     #   b，对添加的接口再删除
     #   c, 查询接口是否删除成功
     def test_delect(self):
-        tagid = ["etXT2CDwAAFUmjGMA2W-eein60WloKbA"]
+        tagid = ["etXT2CDwAAq4aUjQFpUjXel257exNZwg"]
         self.tag.delect_group_id(tagid)
 
 
@@ -71,8 +72,18 @@ class Test_WeiXin():
                 "name": "t2"
             }
         ]
-        self.tag.bef_add(group_data,tag_data)
+        group_id = self.tag.bef_add(group_data,tag_data)
+        print("***************************")
+        for num in self.tag.list().json()['tag_group']:
+            if num['group_id'] == group_id:
+                assert True
+
+
+
 
     def test_befor_delect(self):
         r = self.tag.before_delect(['etXT2CDwAApKQWaY8U4JDvmUvxciZJkA'])
         assert r.json()['errcode'] == 0
+
+    def test_update(self):
+        self.tag.updata('etXT2CDwAA9Gw7FOArjj0XS_U54f5Z3Q','abcd')

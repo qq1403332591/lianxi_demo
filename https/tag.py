@@ -20,47 +20,46 @@ class Tag(Base_Api):
                 "tag": tag, **kwargs
             }
         }
-        # r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/add_corp_tag',
-        #                   params={'access_token': self.token},
-        #                   json=
-        #                   {
-        #                       "group_name": group_name,
-        #                       "tag": tag, **kwargs
-        #                   }
-        #                   )
         r = self.send(data)
         return r
 
     def list(self):
         # 2.获取企业标Tag签库
-        r = requests.post(
-            "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list",
-            params={"access_token": self.token},
-            json={
-                "tag_id": []
-            }
-        )
-        print(json.dumps(r.json(), indent=2))  # 将python对象编码成Json字符串
+        data = {"method": "post",
+                "url": "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list",
+                "params": {"access_token": self.token},
+                "json": {
+                    "tag_id": []
+                }
+
+                }
+        r = self.send(data)
         return r
 
     def updata(self, id, name):
         # id = 'etXT2CDwAAabMht1wnGAhuh0PhwpoPDQ'
         # name = 'tag' + str(datetime.datetime.now())[11:19]
-        r = requests.post(url='https://qyapi.weixin.qq.com/cgi-bin/externalcontact/edit_corp_tag',
-                          params={"access_token": self.token},
-                          json={
-                              "id": id,
-                              "name": name
-                          })
+        data = {"method": "post",
+                "url": "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/edit_corp_tag",
+                "params": {"access_token": self.token},
+                "json": {
+                    "id": id,
+                    "name": name
+                }
+                }
+        r = self.send(data)
+        return r
 
     def delect_group_id(self, group_id):
-        r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag',
-                          params=
-                          {"access_token": self.token},
-                          json={
-                              "group_id": group_id
-                          })
-        print(json.dumps(r.json(), indent=2))
+        data = {"method": "post",
+                "url": "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag",
+                "params":
+                    {"access_token": self.token},
+                "json": {
+                    "group_id": group_id
+                }
+                }
+        r = self.send(data)
         return r
 
     def before_delect(self, group_ids):

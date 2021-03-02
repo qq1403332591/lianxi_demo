@@ -4,10 +4,11 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium_demo.po_demo.login_page import Login_Page
+from selenium_demo.po_demo.register_page import Register_Page
 
 
 class Index_Page():
-    def __init__(self,driver:WebDriver):
+    def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get('https://work.weixin.qq.com/')
         self.driver.maximize_window()
@@ -26,8 +27,8 @@ class Index_Page():
 
 
     def go_register(self):
-        register_locator = ("CLASS_NAME","index_head_info_pCDownloadBtn")
+        register_locator = ("class name","index_head_info_pCDownloadBtn")
         self.find_element(register_locator).click()
-        return Register_Page()
+        return Register_Page(self.driver)
 
 

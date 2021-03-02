@@ -1,9 +1,11 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 
+from selenium_demo.po_demo2.page.base_page import Base_Page
 
-class Contact_Page():
-    def __init__(self,driver:WebDriver):
-        self.driver = driver
+
+class Contact_Page(Base_Page):
+    # def __init__(self,driver:WebDriver):
+    #     self.driver = driver
 
     def send_contact(self,username,number,mobilie):
         self.driver.find_element_by_id('username').send_keys(username)

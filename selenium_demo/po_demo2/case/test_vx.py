@@ -7,9 +7,9 @@ class Test_Vxcase():
 
 
     def test_add_contact(self):
-        username = 'a6'
-        number = '13153117120'
-        mobilie = '13153117120'
+        username = 'a10'
+        number = '13153117121'
+        mobilie = '13153117121'
         ele = self.index.add_contact()
         ele.send_contact(username,number,mobilie)
         assert  username in ele.verify()

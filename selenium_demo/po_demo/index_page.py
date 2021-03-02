@@ -1,6 +1,7 @@
 from selenium  import  webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium_demo.po_demo.login_page import Login_Page
@@ -16,14 +17,17 @@ class Index_Page():
 
     def find_element(self,by,locator=None):
         if locator == None:
-            return WebDriverWait(self.driver,10).until(lambda x: x.find_element(*by))
+            res: WebElement = WebDriverWait(self.driver,10).until(lambda x: x.find_element(*by))
+            return res
         else:
-            return WebDriverWait(self.driver, 10).until(lambda x: x.find_element(by,locator))
+            res: WebElement = WebDriverWait(self.driver, 10).until(lambda x: x.find_element(by,locator))
+            return res
 
 
     def goto_login(self):
         self.find_element(By.CLASS_NAME,"index_top_operation_loginBtn").click()
         return Login_Page(self.driver)
+
 
 
     def go_register(self):

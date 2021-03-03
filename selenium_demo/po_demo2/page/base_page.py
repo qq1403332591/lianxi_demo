@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class Base_Page():
@@ -18,3 +20,15 @@ class Base_Page():
 
         if self.base_url != '':
             self.driver.get(self.base_url)
+
+
+    def find_element(self,by,locator=None):
+        if locator == None:
+            res: WebElement = WebDriverWait(self.driver,10).until(lambda x: x.find_element(*by))
+            return res
+        else:
+            res: WebElement = WebDriverWait(self.driver, 10).until(lambda x: x.find_element(by,locator))
+            return res
+
+    def finds(self,locator):
+        return  self.driver.find_elements(*locator)

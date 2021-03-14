@@ -1,0 +1,6 @@
+goto_hangqing:
+  - by: id
+    locator: 'post_status'
+    action: "click"
+
+

@@ -7,14 +7,14 @@ class Test_Tag():
     def setup(self):
         self.tag = Page_Tag()
 
-    def test_get_Enterprise_label(self):
-        r = self.tag.get_Enterprise_label()
+    def test_get_enterprise_label(self):
+        r = self.tag.get_enterprise_label()
         print(r.json()['errmsg'])
 
     def test_edit_tag(self):
         tagname = 'NEW_TAG_NAME'
         r = self.tag.exit_tag()
-        res = self.tag.get_Enterprise_label()
+        res = self.tag.get_enterprise_label()
         # tag_list = [tag for tags in res.json()['tag_group'] if tags['group_name'] == 'tmp12345' for tag in tags['tag']
         #             if tag['name'] == tagname]
         # assert len(tag_list) != 0
@@ -23,21 +23,20 @@ class Test_Tag():
         assert jsonpath(res.json(), f"$..[?(@.name=='{tagname}')]")[0]['name'] == tagname
 
     def test_add_tag(self):
-        tag1 = 'TAG_NAME_5'
-        tag2 = 'TAG_NAME_6'
-        tag1_id = []
-        r = self.tag.add_tag(tag1, tag2)
-        res = self.tag.get_Enterprise_label()
-        for num in res.json()['tag_group']:
-            if num['group_name'] == 'GROUP_NAME':
-                for tag_id in num['tag']:
-                    if tag_id['name'] ==  tag1:
-                        tag1_id.append(tag_id['id'])
-                    elif tag_id['name'] == tag2:
-                        tag1_id.append(tag_id['id'])
-        if tag1 == jsonpath(self.tag.get_Enterprise_label().json(),f"$..[?(@.name=='{tag1}')]")[0]['name']:
-            self.tag.delect_tag(tag1_id[0])
+        r = self.tag.add_tag("new1")
+
+    def test_before_add(self):
+        self.tag.find_tag_id_is_not_exist('new3')
+
+    def test_delect_tag_id(self):
+        self.tag.delect_tag(['etXT2CDwAAzvaLLqppZXO_3o9Z9fZTEQ'])
 
 
+    def test_before_del(self):
+        self.tag.before_del(['etXT2CDwAA0GbKyEQ11ySIjUNB5HGgrQ'])
 
-        # print(jsonpath(res.json(), f"$..[?(@.name=='{tag1}')]"))
+    def test_get_list(self):
+        r = self.tag.get_enterprise_label()
+        for tag_group in r.json()['tag_group']:
+            for tag in tag_group['tag']:
+                print(tag)

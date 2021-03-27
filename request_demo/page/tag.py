@@ -2,18 +2,10 @@ import json
 
 import requests
 
+from request_demo.page.basepage import BasePage
 
-class Page_Tag():
-    def __init__(self):
-        self.token = self.get_token()
 
-    def get_token(self):
-        r = requests.get('https://qyapi.weixin.qq.com/cgi-bin/gettoken',
-                         params={'corpid': "wwafa879921b0e5a41",
-                                 'corpsecret': "-Pvw3PqU_ylhpj75VroMnqOfRW5pXJfsLguXMuqemQg"})
-
-        # print(json.dumps(r.json(), indent=2))
-        return r.json()['access_token']
+class Page_Tag(BasePage):
 
     def get_enterprise_label(self):
         r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list",
@@ -89,16 +81,7 @@ class Page_Tag():
         print('tag_id not in list')
         return False
 
-    def before_del(self, tag_ids):
-        tagid = []
-        r = self.delect_tag(tag_ids)
-        if r.json()['errcode'] == 40068:
-            for items in tag_ids:
-                if not self.is_find_tag_id_exist(items):
-                    for nums in self.add_tag('yydsddd',id=items).json()['tag_group']:
-                            if 'yyd' in nums['name']:
-                                tagid.append(num['id'])
-                                self.delect_tag(tagid)
+
 
 
 

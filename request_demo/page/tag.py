@@ -1,6 +1,7 @@
 import json
 
 import requests
+import yaml
 
 from request_demo.page.basepage import BasePage
 
@@ -8,8 +9,16 @@ from request_demo.page.basepage import BasePage
 class Page_Tag(BasePage):
 
     def get_enterprise_label(self):
-        r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list",
-                          json={'tag_id': []}, params={"access_token": self.token})
+        # r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list",
+        #                   json={'tag_id': []}, params={"access_token": self.token})
+        # print(json.dumps(r.json(), indent=2))
+        # return r
+
+        with open("../page/api_data.yaml", encoding="utf-8") as f:
+            data = yaml.load(f)
+        self.params = self.params
+        self.params["token"] = self.token
+        r = self.send(data['get_list'])
         print(json.dumps(r.json(), indent=2))
         return r
 
@@ -37,7 +46,7 @@ class Page_Tag(BasePage):
                           json={
                               "tag_id":
                                   tag_id,
-                                  **kwargs
+                              **kwargs
                           })
         print(json.dumps(r.json(), indent=2))
         return r
@@ -67,9 +76,6 @@ class Page_Tag(BasePage):
         print('tag_name not in list')
         return False
 
-
-
-
     def is_find_tag_id_exist(self, tag_id):
         '''
         根据tag_name 查找id
@@ -81,11 +87,15 @@ class Page_Tag(BasePage):
         print('tag_id not in list')
         return False
 
+    def open_yaml(self, key_name):
+        with open("../page/api_data.yaml", encoding="utf-8") as f:
+            datas = yaml.load(f)
+            r = self.params_data(datas[key_name])
+            return r
 
-
-
-
-
-
+    def params_data(self, ultimately_key):
+        for data in ultimately_key:
+            if "select" == data["action"]:
+                return data['sql']
 
 

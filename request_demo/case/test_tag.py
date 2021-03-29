@@ -1,5 +1,5 @@
 from jsonpath import jsonpath
-
+from string import Template
 from request_demo.page.tag import Page_Tag
 
 
@@ -9,7 +9,7 @@ class Test_Tag():
 
     def test_get_enterprise_label(self):
         r = self.tag.get_enterprise_label()
-        print(r.json()['errmsg'])
+        # print(r.json()['errmsg'])
 
     def test_edit_tag(self):
         tagname = 'NEW_TAG_NAME'
@@ -40,3 +40,33 @@ class Test_Tag():
         for tag_group in r.json()['tag_group']:
             for tag in tag_group['tag']:
                 print(tag)
+
+
+    def test_stringTemplate(self):
+        # 创建一个Template实例tmp
+        tmp = Template("I have ${yuan} yuan,I can buy ${how} hotdog")
+        yuanList = [1, 5, 8, 10, 12, 13]
+        for yu in yuanList:
+            # substitute()按照Template中string输出
+            # 并给相应key赋值
+            Substitute = tmp.substitute(yuan=yu, how=yu)
+            print(Substitute)
+
+    def test_demo(self):
+        sql = Template("")
+        yuanlist = [1,10,20]
+        for yu in yuanlist:
+            num = sql.substitute(id=yu)
+            print(num)
+
+
+    def test_demo01(self):
+        '''
+        字符串模板
+        :return:参考帖子
+        https://www.jb51.net/article/119293.htm
+        '''
+        num = self.tag.open_yaml('find_news_id')
+        sql = Template(num)
+        id_list = [1]
+        print(sql.substitute(id=id_list[0]))

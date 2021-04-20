@@ -10,6 +10,21 @@ def get_datas(path,key):
         add_ids = datas[key]["ids"]
         return [add_datas,add_ids]
 
+def get_steps_datas(path,jisuan,num1,num2):
+    with open(path,encoding='utf-8') as f:
+        steps_datas = yaml.load(f)
+        for step in steps_datas:
+            if 'chufa' in step:
+                print('计算chufa开始')
+                c = jisuan.chufa(num1,num2)
+                assert  c == 2
+                print('chufa断言结束')
+            elif 'chufa1' in step:
+                print('计算chufa1开始')
+                c = jisuan.chufa1(num1,num2)
+                assert  c == 2
+                print('chufa1断言结束')
+
 
 
 
@@ -48,3 +63,6 @@ class TestCase():
         # print(get_datas('./datas.yaml', 'chufa')[1])
 
 
+    def test_chufa1(self):
+        jisuan = Jisuanqi()
+        get_steps_datas('./steps_datas.yaml',jisuan,2,1)

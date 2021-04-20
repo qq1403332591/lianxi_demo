@@ -10,3 +10,10 @@ add:
     - "ceshi3"
     - "ceshi4"
 
+chufa:
+  datas:
+    - [2,1]
+    - [1,2]
+  ids:
+    - "ceshi1"
+    - "ceshi2"

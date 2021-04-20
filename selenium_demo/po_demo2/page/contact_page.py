@@ -1,8 +1,6 @@
-import time
+
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium_demo.po_demo2.page.base_page import Base_Page
 

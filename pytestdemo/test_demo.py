@@ -32,4 +32,3 @@ class TestCase:
         result = get_calc.jiafa(1,2)
         print(result)
 
-

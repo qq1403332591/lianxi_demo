@@ -5,20 +5,6 @@ import  pytest
 '''
 
 
-@pytest.fixture(autouse=True,scope=function)
-def test_login():
-    # setup 操作
-    print("前置操作：准备数据this is login func")
-    # return 操作
-    yield ['yaoyingdong','123']
-    # teardown操作
-    print("后置操作：清理数据")
-
-@pytest.fixture
-def test_exit():
-    print("this is quit func")
-    return ("msg","已注销")
-
 
 # 传入装饰器方法的名字
 def test_case1(test_login):
@@ -50,3 +36,8 @@ def test_case4(test_login,test_exit):
 # scope：作用域
 def test_case5():
     print("test_case5运行成功")
+
+
+def test_case6(jiafa):
+    jiafa(1,2)
+

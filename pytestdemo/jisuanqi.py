@@ -1,5 +1,5 @@
 class jisuanqi():
-    def jiafa(self,a,b,c):
+    def jiafa(self,a,b):
         c = a + b
         return  c
 

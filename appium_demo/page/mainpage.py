@@ -1,3 +1,5 @@
+import time
+
 import yaml
 from selenium.webdriver.common.by import By
 
@@ -19,5 +21,11 @@ class MainPage(BasePage):
         return Market_Page(self.driver)
 
 
-
+    def test_case02(self):
+        self.driver.find_element_by_xpath('//*[@text="我的"]').click()
+        self.driver.find_element_by_xpath('//*[@text="我发布的"]').click()
+        while True:
+            self.driver.find_element_by_xpath('//*[contains(@text,"经典落肩")]').click()
+            time.sleep(1)
+            self.driver.back()
 

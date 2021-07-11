@@ -1,9 +1,15 @@
 import pytest
 import yaml
-from testkuangjia.chufa import Jisuanqi
+from pytest_advanced.chufa import Jisuanqi
 
 
 def get_datas(path,key):
+    '''
+    测试数据的数据驱动
+    :param path:
+    :param key:
+    :return:
+    '''
     with open(path) as f:
         datas = yaml.load(f)
         add_datas = datas[key]['datas']
@@ -11,6 +17,14 @@ def get_datas(path,key):
         return [add_datas,add_ids]
 
 def get_steps_datas(path,jisuan,num1,num2):
+    '''
+    测试方法的数据驱动
+    :param path:
+    :param jisuan:
+    :param num1:
+    :param num2:
+    :return:
+    '''
     with open(path,encoding='utf-8') as f:
         steps_datas = yaml.load(f)
         for step in steps_datas:

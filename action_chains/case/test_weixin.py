@@ -11,5 +11,8 @@ class TestCase():
         self.index.index_page().login()
 
 
-    # def teardown_class(self):
-    #     self.index.driver.quit()
+    def test_case2(self):
+        self.index.add_person()
+
+    def teardown_class(self):
+        self.index.driver.quit()

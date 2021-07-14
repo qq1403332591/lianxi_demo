@@ -1,11 +1,9 @@
-import time
 
-from selenium.webdriver.remote.webdriver import WebDriver
+from action_chains.po_page.base_page import Base_Page
 
 
-class Login_Page():
-    def __init__(self,driver:WebDriver):
-        self.driver = driver
+class Login_Page(Base_Page):
+
 
 
     def login(self):

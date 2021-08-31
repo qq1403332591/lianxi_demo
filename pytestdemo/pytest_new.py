@@ -1,4 +1,14 @@
 import pytest
+import yaml
+
+
+def open_yaml():
+    with open('../pytestdemo/datas.yaml') as f:
+        datas = yaml.load(f)
+    add_datas = datas['add']['datas']
+    ids_datas = datas['add']['ids']
+    return [add_datas, ids_datas]
+
 
 
 class Test_Case1:
@@ -16,3 +26,17 @@ class Test_Case1:
     @pytest.mark.parametrize("b",[222,333,444])
     def test_case2(self,a,b):
         print(a,b)
+
+
+
+
+
+    @pytest.mark.parametrize("a,b,c",open_yaml()[0],ids=open_yaml()[1])
+    def test_case3(self,a,b,c):
+        # print(open_yaml()[0])
+        # print(open_yaml()[1])
+        c = a + b
+        print(c)
+
+
+

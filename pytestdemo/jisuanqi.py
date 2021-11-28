@@ -3,6 +3,15 @@ class jisuanqi():
         c = a + b
         return  c
 
+    def jiafa1(self,a,b):
+        c = a + b
+        return  c
+
+    def jiafa2(self,a,b):
+        c = a + b
+        return  c
+
+
     def jianfa(self,a,b):
         c = a - b
         return c

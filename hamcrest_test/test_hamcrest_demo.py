@@ -10,10 +10,14 @@ def test_01():
 
 
 def test_hamcrest_02():
-    r =requests.get('https://home.testing-studio.com/categories.json')
+    proxy = {
+        "http":"http://127.0.0.1:8888",
+        "https":"http://127.0.0.1:8888"
+    }
+    r =requests.get('https://home.testing-studio.com/categories.json',proxies=proxy,verify=False)
     print(r.json())
     assert r.status_code == 200
-    # print(jsonpath(r.json(),'$..name'))
+    # print(jsonpath(r.json(),'$..name'))s
     eles = r.json()['category_list']['categories']
     for ele in range(len(eles)):
         print(eles[ele]['name'])
